@@ -1,0 +1,5 @@
+Instalar o react navigation
+npx expo install react-native-screens react-native-safe-area-context
+expo install @react-navigation/native
+
+npm install @react-navigation/native-stack
