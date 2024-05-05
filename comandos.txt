@@ -1,5 +1,17 @@
-Instalar o react navigation
+*Instalar o react navigation
 npx expo install react-native-screens react-native-safe-area-context
 expo install @react-navigation/native
 
 npm install @react-navigation/native-stack
+
+*gradient
+npm install react-native-linear-gradient
+
+
+
+
+<<<<<<<<<< VERIFICAR DEPOIS PORQUE GRADIENT NÃO RODA EM APLICAÇÃO IOS >>>>>>>>>>>>>>>>>
+ /*<LinearGradient
+                colors={['rgba(120, 203, 229, 0.65)', 'rgba(0, 13, 24, 0.65)']}
+                style={StyleSheet.absoluteFill}
+            />*/
