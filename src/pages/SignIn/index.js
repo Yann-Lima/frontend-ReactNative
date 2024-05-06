@@ -13,6 +13,11 @@ import * as Animatable from 'react-native-animatable';
 
 
 export default function SignIn() {
+  const navigation = useNavigation();
+
+  const handleForgotPassword = ()=>{
+    navigation.navigate('ForgotPassword');
+  };
   return (
     <ImageBackground
       source={require('../../../assets/backgroud_SignIn.png')}
@@ -65,7 +70,17 @@ export default function SignIn() {
             </View>
             {/*Esqueceu a senha */}
             <View style={style.forgotPasswordContainer}>
-              <Text style={style.forgotPasswordText}>Forgotten <Text style={style.passwordText}>your password?</Text></Text>
+              <TouchableOpacity onPress={handleForgotPassword}>
+                <Text style={style.forgotPasswordText}>Forgotten <Text style={style.passwordText}>your password?</Text></Text>
+              </TouchableOpacity>
+            </View>
+            {/*Logo final */}
+            <View style={style.logoFinal}>
+              <Image
+                source={require('../../../assets/logo_welcome.png')}
+                resizeMode='contain'
+                style={style.logoImage}
+              />
             </View>
           </View>
         </View>
@@ -156,20 +171,24 @@ const style = StyleSheet.create({
     alignItems: 'center',
     marginTop: 15,
   },
-  buttonText:{
+  buttonText: {
     color: '#fff',
     fontSize: 16,
   },
   //Estilo esqueceu a senha
-  forgotPasswordContainer:{
+  forgotPasswordContainer: {
     marginTop: 45,
     alignItems: 'center',
   },
-  forgotPasswordText:{
+  forgotPasswordText: {
     fontSize: 16,
     color: '#555',
   },
-  passwordText:{
+  passwordText: {
     color: '#29D9D5',
   },
+  logoFinal: {
+    alignItems: 'center',
+    marginTop: '10%',
+  }
 })
