@@ -8,6 +8,8 @@ import {
  } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import * as Animatable from 'react-native-animatable';
+
 /*import LinearGradient from 'react-native-linear-gradient';*/
 
 export default function Welcome() {
@@ -27,15 +29,16 @@ export default function Welcome() {
     <View style={style.overlay} />
 
     <View style={style.container}>
-      <View style={style.containerLogo}>
+
+      <Animatable.View animation="flipInX" style={style.containerLogo}>
         <Image
         source={require('../../../assets/logo.png')}
         style={{width: '40%'}}
         resizeMode='contain'
         />
-      </View>
+      </Animatable.View>
 
-      <View style={style.containerForm}>
+      <Animatable.View delay={600} animation="fadeInUp" style={style.containerForm}>
         <Text style={style.title}>Challenge Sport Club</Text>
         {/*Espaço para imagem do perfil */}
         <View style={style.profileImageContainer}>
@@ -87,7 +90,7 @@ export default function Welcome() {
         <TouchableOpacity style={style.createButton}>
           <Text style={style.createText}>Create account</Text>
         </TouchableOpacity>
-      </View>
+      </Animatable.View>
 
     </View>
     </ImageBackground>
@@ -109,10 +112,9 @@ const style = StyleSheet.create({
       flex: 1,
     },
     containerLogo:{
-      justifyContent: 'flex-start',
+      justifyContent: 'center',
       alignItems:'center',
       marginTop: '10%', //distacia da parte superior da tela
-     //
     },
     containerForm:{
       //flex:1,

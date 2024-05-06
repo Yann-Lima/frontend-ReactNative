@@ -7,6 +7,8 @@ npm install @react-navigation/native-stack
 *gradient
 npm install react-native-linear-gradient
 
+*animação
+react-native-animatable
 
 
 
