@@ -11,12 +11,19 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/EvilIcons'
+import {Colors, Fonts} from '../../../assets/theme.js';
 
 export default function forgotPassword() {
+    const navigation = useNavigation();
+
+    const handleEmailSignIn = () =>{
+      navigation.navigate('SignIn');
+    };
+
     return (
         <View style={style.contaier}>
             <View style={style.buttonLoginContainer}>
-                <TouchableOpacity style={style.backToLogin}>
+                <TouchableOpacity style={style.backToLogin} onPress={handleEmailSignIn} >
                     <View style={style.buttonContent}>
                         <Image
                             source={require('../../../assets/backToLogin.png')}
@@ -47,6 +54,14 @@ export default function forgotPassword() {
                         <Text style={style.buttonText}>Submit</Text>
                     </View>
                 </TouchableOpacity>
+            </View>
+            {/*Logo final */}
+            <View style={style.logoFinal}>
+                <Image
+                    source={require('../../../assets/logo_welcome.png')}
+                    resizeMode='contain'
+                    style={style.logoImage}
+                />
             </View>
         </View>
     )
@@ -131,8 +146,13 @@ const style = StyleSheet.create({
         alignItems: 'center',
         marginTop: 15,
     },
-    buttonText:{
+    buttonText: {
         color: '#fff',
         fontSize: 16,
+    },
+    //Logo final
+    logoFinal: {
+        alignItems: 'center',
+        marginTop: '25%',
     },
 })
