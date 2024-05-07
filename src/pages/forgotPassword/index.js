@@ -65,5 +65,10 @@ const style = StyleSheet.create({
     backImage: {
         marginRight: 10,
     },
+    iconContainer:{
+        justifyContent: 'center',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    }
     
 })
