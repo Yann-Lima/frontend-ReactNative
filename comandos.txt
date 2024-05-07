@@ -10,6 +10,9 @@ npm install react-native-linear-gradient
 *animação
 npm install react-native-animatable
 
+*icons
+npm install react-native-vector-icons
+
 
 
 <<<<<<<<<< VERIFICAR DEPOIS PORQUE GRADIENT NÃO RODA EM APLICAÇÃO IOS >>>>>>>>>>>>>>>>>
