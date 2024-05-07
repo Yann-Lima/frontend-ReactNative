@@ -11,7 +11,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/EvilIcons'
-import {Colors, Fonts} from '../../../assets/theme.js';
+import {Colors, Fonts, ColorsLigth, ColorsDark} from '../../../assets/theme.js';
 
 export default function forgotPassword() {
     const navigation = useNavigation();
@@ -81,7 +81,7 @@ const style = StyleSheet.create({
     backToLogin: {
         width: 260,
         height: 50,
-        backgroundColor: '#29D9D5',
+        backgroundColor: ColorsLigth.pimary,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -92,7 +92,7 @@ const style = StyleSheet.create({
         alignItems: 'flex-start'
     },
     loginButtonText: {
-        color: '#fff',
+        color: ColorsLigth.ligth7,
         fontSize: 18,
     },
     backImage: {
@@ -112,12 +112,12 @@ const style = StyleSheet.create({
     },
     titleTextForgot: {
         fontSize: 32,
-        color: '#555'
+        color: ColorsLigth.ligth3,
     },
     subtitleTextPassword: {
         marginTop: 15,
         fontSize: 16,
-        color: '#555',
+        color: ColorsLigth.ligth3,
     },
     //Input Email
     inputContainerEmail: {
@@ -125,7 +125,7 @@ const style = StyleSheet.create({
         alignItems: 'center',
     },
     inputText: {
-        borderBottomColor: "#555",
+        borderBottomColor: ColorsLigth.ligth3,
         borderBottomWidth: "2",
         width: 260,
         marginTop: '5%',
@@ -140,14 +140,14 @@ const style = StyleSheet.create({
     signInButton: {
         width: 260,
         height: 50,
-        backgroundColor: '#29D9D5',
+        backgroundColor: ColorsLigth.pimary,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 15,
     },
     buttonText: {
-        color: '#fff',
+        color: ColorsLigth.ligth7,
         fontSize: 16,
     },
     //Logo final

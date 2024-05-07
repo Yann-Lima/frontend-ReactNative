@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
+import {Colors, Fonts, ColorsLigth, ColorsDark} from '../../../assets/theme.js';
 
 /*import LinearGradient from 'react-native-linear-gradient';*/
 
