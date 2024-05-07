@@ -135,7 +135,7 @@ const style = StyleSheet.create({
       borderRadius: 60,//imagem redonda
       overflow: 'hidden', //para cortar a imagem de forma redonda
       borderWidth: 2,
-      borderColor: 'red',
+      borderColor: '#29D9D5',
     },
     profileImage: {
       width: '100%',
