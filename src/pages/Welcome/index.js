@@ -123,7 +123,7 @@ const style = StyleSheet.create({
     },
     title:{
       fontSize: 28,
-      color: '#f5f5f5',
+      color: ColorsLigth.ligth5,
       fontFamily:'Arial', //alterar fonte
       textAlign: 'center',
     },
@@ -135,7 +135,7 @@ const style = StyleSheet.create({
       borderRadius: 60,//imagem redonda
       overflow: 'hidden', //para cortar a imagem de forma redonda
       borderWidth: 2,
-      borderColor: '#29D9D5',
+      borderColor: ColorsLigth.pimary,
     },
     profileImage: {
       width: '100%',
@@ -150,7 +150,7 @@ const style = StyleSheet.create({
     signInButton:{
       width: 260,
       height: 50,
-      backgroundColor: 'white',
+      backgroundColor: ColorsLigth.ligth7,
       borderRadius: 15,
       justifyContent: 'center',
       alignItems: 'center',
@@ -164,13 +164,13 @@ const style = StyleSheet.create({
       marginRight: 10,
     },
     buttonText:{
-      color: 'black',
+      color: ColorsLigth.ligth1,
       fontSize: 16,
     },
     //Criar conta
     createText:{
       fontSize: 16,
-      color: '#fff',
+      color: ColorsLigth.ligth7,
       marginTop: 40,
     }
 })

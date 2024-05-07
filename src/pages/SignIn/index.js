@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
+import {Colors, Fonts, ColorsLigth, ColorsDark} from '../../../assets/theme.js';
 
 
 export default function SignIn() {
@@ -113,7 +114,7 @@ const style = StyleSheet.create({
     borderRadius: 60,//imagem redonda
     overflow: 'hidden', //para cortar a imagem de forma redonda
     borderWidth: 2,
-    borderColor: '#29D9D5',
+    borderColor: Colors.primary,
   },
   profileImage: {
     width: '100%',
@@ -124,7 +125,7 @@ const style = StyleSheet.create({
   whiteBox: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: ColorsLigth.ligth7,
     position: 'absolute',
     bottom: 0,
     borderTopLeftRadius: 15,
@@ -134,7 +135,7 @@ const style = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 36,
-    color: '#000',
+    color: ColorsLigth.ligth1,
     textAlign: 'center',
     marginTop: '15%',
   },
@@ -147,7 +148,7 @@ const style = StyleSheet.create({
     width: 260,
     height: 50,
     fontSize: 16,
-    borderColor: '#29D9D5',
+    borderColor: Colors.primary,
     borderRadius: 15,
     borderWidth: 2,
   },
@@ -155,7 +156,7 @@ const style = StyleSheet.create({
     marginTop: 35,
     width: 300,
     height: 1,
-    backgroundColor: '#555',
+    backgroundColor: ColorsLigth.ligth3,
   },
   //Botão de login
   buttonContainer: {
@@ -165,14 +166,14 @@ const style = StyleSheet.create({
   signInButton: {
     width: 260,
     height: 50,
-    backgroundColor: '#29D9D5',
+    backgroundColor: Colors.primary,
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
   },
   buttonText: {
-    color: '#fff',
+    color: ColorsLigth.ligth7,
     fontSize: 16,
   },
   //Estilo esqueceu a senha
@@ -182,10 +183,10 @@ const style = StyleSheet.create({
   },
   forgotPasswordText: {
     fontSize: 16,
-    color: '#555',
+    color: ColorsLigth.ligth3,
   },
   passwordText: {
-    color: '#29D9D5',
+    color: Colors.primary,
   },
   logoFinal: {
     alignItems: 'center',
