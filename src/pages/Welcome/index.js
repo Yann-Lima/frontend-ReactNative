@@ -81,7 +81,7 @@ export default function Welcome() {
                 style={style.buttonImage}
                 resizeMode='contain'
               />
-              <Text style={style.buttonText}>Sign in with Email</Text>
+              <Text style={style.buttonText}>Sign in with E-mail</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -114,7 +114,7 @@ const style = StyleSheet.create({
     containerLogo:{
       justifyContent: 'center',
       alignItems:'center',
-      marginTop: '10%', //distacia da parte superior da tela
+      marginTop: '1%', //distacia da parte superior da tela
     },
     containerForm:{
       //flex:1,
@@ -129,7 +129,7 @@ const style = StyleSheet.create({
     },
     //Imagem de perfil do usuario
     profileImageContainer:{
-      margin: 30, //espaço entre o titulo e a imagem de perfil
+      margin: 10, //espaço entre o titulo e a imagem de perfil
       width: 120,
       height:120,
       borderRadius: 60,//imagem redonda
