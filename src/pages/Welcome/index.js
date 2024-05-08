@@ -60,11 +60,11 @@ export default function Welcome() {
           <TouchableOpacity style={style.signInButton}>
           <View style={style.buttonContent}>
               <Image 
-                source={require('../../../assets/logoFacebook.png')}
+                source={require('../../../assets/Google.png')}
                 style={style.buttonImage}
                 resizeMode='contain'
               />
-              <Text style={style.buttonText}>Sign in with Facebook</Text>
+              <Text style={style.buttonText}>Sign in with Google</Text>
             </View>
           </TouchableOpacity>
 
