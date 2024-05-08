@@ -1,51 +1,54 @@
+import React, { useEffect } from 'react';
 import {
     View,
     Text,
     StyleSheet,
     Image,
-    ImageBackground,
-    TouchableOpacity,
-    TextInput
+    TouchableOpacity
 } from 'react-native';
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import * as Animatable from 'react-native-animatable';
-import Icon from 'react-native-vector-icons/EvilIcons'
-import { Colors, Fonts, ColorsLigth, ColorsDark } from '../../../assets/theme.js';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { Colors, ColorsLigth } from '../../../assets/theme.js';
 
 export default function VerificationCode() {
+    const navigation = useNavigation();
+
+    const navigateBack = () => {
+        navigation.goBack();
+    };
+
+
     return (
-        <View style={style.container}>
-            <View style={style.buttonLoginContainer}>
-                <TouchableOpacity style={style.backToLogin} >
-                    <View style={style.buttonContent}>
+        <View style={styles.container}>
+            <View style={styles.buttonLoginContainer}>
+                <TouchableOpacity style={styles.backToLogin} onPress={navigateBack}>
+                    <View style={styles.buttonContent}>
                         <Image
                             source={require('../../../assets/backToLogin.png')}
-                            style={style.backImage}
+                            style={styles.backImage}
                             resizeMode='cover'
                         />
-                        <Text style={style.loginButtonText}>Back to reset</Text>
+                        <Text style={styles.loginButtonText}>Back to reset</Text>
                     </View>
                 </TouchableOpacity>
 
                 {/* Texto de inserir codigo abaixo */}
-                <View style={style.containerTitleTextInsert}>
-                    <Text style={style.textTitleInsert}>Insert your code below</Text>
+                <View style={styles.containerTitleTextInsert}>
+                    <Text style={styles.textTitleInsert}>Insert your code below</Text>
                 </View>
 
                 {/* Caixas brancas com borda vermelha */}
-                <View style={style.codeContainer}>
-                    <View style={style.codeBox}></View>
-                    <View style={style.codeBox}></View>
-                    <View style={style.codeBox}></View>
-                    <View style={style.codeBox}></View>
+                <View style={styles.codeContainer}>
+                    <View style={styles.codeBox}></View>
+                    <View style={styles.codeBox}></View>
+                    <View style={styles.codeBox}></View>
+                    <View style={styles.codeBox}></View>
                 </View>
             </View>
         </View>
     )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
