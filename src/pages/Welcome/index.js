@@ -19,6 +19,10 @@ export default function Welcome() {
   const handleEmailSignIn = () =>{
     navigation.navigate('SignIn');
   };
+
+  const handleCreateAccount = () =>{
+    navigation.navigate('CreateAccount');
+  };
   
   return (
     <ImageBackground
@@ -88,7 +92,7 @@ export default function Welcome() {
         </View>
 
         {/*Se não tiver conta - criar conta*/}
-        <TouchableOpacity style={style.createButton}>
+        <TouchableOpacity style={style.createButton} onPress={handleCreateAccount}>
           <Text style={style.createText}>Create account</Text>
         </TouchableOpacity>
       </Animatable.View>

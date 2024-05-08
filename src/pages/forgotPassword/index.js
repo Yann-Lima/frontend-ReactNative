@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     TextInput
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/EvilIcons'
@@ -15,9 +15,32 @@ import {Colors, Fonts, ColorsLigth, ColorsDark} from '../../../assets/theme.js';
 
 export default function forgotPassword() {
     const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [isEmailValid, setIsEmailValid] = useState(false);
 
     const handleEmailSignIn = () =>{
       navigation.navigate('SignIn');
+    };
+
+    const handleEmailChange = (text) =>{
+        setEmail(text);
+        setIsEmailValid(validateEmail(text));
+    };
+
+    const validateEmail = (email) =>{
+        //Regex para validar o formato do e-mail
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    };
+
+    const handleSubmit = () => {
+        if (!email || email.indexOf('') === -1){//verifica se o email esta vazio ou sem o @
+            alert('Por favor, insira um e-mail valido.');
+            console.warn('email valido:', email);
+        }else{ 
+            //implementar logica para avança e ir para a pagina de reset
+            console.warn('E-mail válido:', email);
+        }
     };
 
     return (
@@ -44,12 +67,24 @@ export default function forgotPassword() {
             </View>
             {/*Insert your email */}
             <View style={style.inputContainerEmail}>
-                <TextInput type={'email'} style={style.inputText} placeholder="E-mail" placeholderTextColor="#555" />
+                <TextInput 
+                style={style.inputText} 
+                placeholder="E-mail" 
+                placeholderTextColor="#555" 
+                value={email}
+                onChangeText={handleEmailChange}
+                keyboardType='email-address'
+                autoCapitalize='none'
+                />
             </View>
 
             {/*Botão de submit */}
             <View style={style.buttonContainer}>
-                <TouchableOpacity style={style.signInButton}>
+                <TouchableOpacity 
+                style={style.signInButton}
+                disabled={!isEmailValid}
+                onPress={handleSubmit}
+                >
                     <View style={style.buttonContent}>
                         <Text style={style.buttonText}>Submit</Text>
                     </View>
@@ -81,7 +116,7 @@ const style = StyleSheet.create({
     backToLogin: {
         width: 260,
         height: 50,
-        backgroundColor: ColorsLigth.pimary,
+        backgroundColor: Colors.primary,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -140,7 +175,7 @@ const style = StyleSheet.create({
     signInButton: {
         width: 260,
         height: 50,
-        backgroundColor: ColorsLigth.pimary,
+        backgroundColor: Colors.primary,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
