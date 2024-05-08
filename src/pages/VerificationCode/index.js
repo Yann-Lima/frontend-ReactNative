@@ -1,21 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
     StyleSheet,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    TextInput,
+    Keyboard,
 } from 'react-native';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useNavigation, useFocusEffect, useRoute } from '@react-navigation/native';
 import { Colors, ColorsLigth } from '../../../assets/theme.js';
 
 export default function VerificationCode() {
     const navigation = useNavigation();
+    const route = useRoute();
+    const [codes, setCodes] = useState(['', '', '', '']);
+    const email = route.params?.email || '';
 
     const navigateBack = () => {
         navigation.goBack();
     };
 
+    const handleCodeChange = (index, value) => {
+        //verifica se o valor é de um numero em cada caixa
+        if (/^\d$/.test(value)) {
+            const newCodes = [...codes];
+            newCodes[index] = value;
+            setCodes(newCodes);
+            //verifica se o ultimo digito foi preenchido e oculta o teclado
+            if (index == codes.length - 1) {
+                Keyboard.dismiss();
+            }
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -38,10 +55,32 @@ export default function VerificationCode() {
 
                 {/* Caixas brancas com borda vermelha */}
                 <View style={styles.codeContainer}>
-                    <View style={styles.codeBox}></View>
-                    <View style={styles.codeBox}></View>
-                    <View style={styles.codeBox}></View>
-                    <View style={styles.codeBox}></View>
+                    {codes.map((code, index) => (
+                        <TextInput
+                            key={index}
+                            style={styles.codeBox}
+                            onChangeText={(text) => handleCodeChange(index, text)}
+                            value={code}
+                            keyboardType="numeric"
+                            maxLength={1}
+                            returnKeyType={index == codes.length - 1 ? 'done' : 'next'}
+                            onSubmitEditing={() => {
+                                if (index == code.length - 1) {
+                                    keyboard.dismiss();
+                                }
+                            }}
+                        />
+                    ))}
+                </View>
+                <View style={styles.containerEmailReceived}>
+                    <Text style={styles.textEmailReceived}>Email <Text style={styles.emailColor}>{email}</Text> received a code, plase also check your spam folder.</Text>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.signInButton}>
+                        <View style={styles.buttonContent}>
+                            <Text style={styles.buttonText}>Submit</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -102,8 +141,30 @@ const styles = StyleSheet.create({
         width: 45,
         height: 45,
         borderWidth: 1,
-        borderColor: 'red',
+        borderColor: Colors.primary,
         borderRadius: 10,
-        marginRight: 23,
+        marginRight: 10,
+        textAlign: 'center',
+        fontSize: 24,
+    },
+    //texto de email na caixa de spam
+    containerEmailReceived: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '10%',
+    },
+    textEmailReceived: {
+        textAlign: 'center',
+        fontSize: 16,
+        color: ColorsLigth.ligth5,
+    },
+    emailColor: {
+        color: Colors.primary,
+    },
+    //button de submit
+    buttonContainer:{
+        position: 'absolute',
+        top: 50,
+        marginLeft: '25%',
     },
 });

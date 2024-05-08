@@ -43,7 +43,7 @@ export default function forgotPassword() {
             alert('Por favor, insira um e-mail valido.');
             console.warn('email valido:', email);
         } else {
-            navigation.navigate('VerificationCode'); //Vai para a pagina de verificação de codigo
+            navigation.navigate('VerificationCode', { email }); //Vai para a pagina de verificação de codigo
             console.warn('E-mail válido:', email);
         }
     };
