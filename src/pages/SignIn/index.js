@@ -178,7 +178,7 @@ const style = StyleSheet.create({
   },
   //Estilo esqueceu a senha
   forgotPasswordContainer: {
-    marginTop: 45,
+    marginTop: 20,
     alignItems: 'center',
   },
   forgotPasswordText: {
@@ -190,6 +190,6 @@ const style = StyleSheet.create({
   },
   logoFinal: {
     alignItems: 'center',
-    marginTop: '10%',
+    marginTop: '5%',
   }
 })
