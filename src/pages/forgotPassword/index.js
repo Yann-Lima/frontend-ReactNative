@@ -11,34 +11,39 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/EvilIcons'
-import {Colors, Fonts, ColorsLigth, ColorsDark} from '../../../assets/theme.js';
+import { Colors, Fonts, ColorsLigth, ColorsDark } from '../../../assets/theme.js';
 
 export default function forgotPassword() {
     const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [isEmailValid, setIsEmailValid] = useState(false);
 
-    const handleEmailSignIn = () =>{
-      navigation.navigate('SignIn');
+    const handleEmailSignIn = () => {
+        navigation.navigate('SignIn');
     };
 
-    const handleEmailChange = (text) =>{
+
+    const handleEmailChange = (text) => {
         setEmail(text);
-        setIsEmailValid(validateEmail(text));
+        if (text.trim() !== '') {// verifica se o texto do e-mail não está vazio
+            setIsEmailValid(validateEmail(text)); // Atualiza isEmailValid apenas se o texto não estiver vazio
+        } else {
+            setIsEmailValid(false);// Define isEmailValid como falso se o texto estiver vazio 
+        }
     };
 
-    const validateEmail = (email) =>{
+    const validateEmail = (email) => {
         //Regex para validar o formato do e-mail
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailPattern.test(email);
     };
 
     const handleSubmit = () => {
-        if (!email || email.indexOf('') === -1){//verifica se o email esta vazio ou sem o @
+        if (!email.trim() || email.indexOf('@') === -1) {//verifica se o email esta vazio ou sem o @
             alert('Por favor, insira um e-mail valido.');
             console.warn('email valido:', email);
-        }else{ 
-            //implementar logica para avança e ir para a pagina de reset
+        } else {
+            navigation.navigate('VerificationCode'); //Vai para a pagina de verificação de codigo
             console.warn('E-mail válido:', email);
         }
     };
@@ -46,7 +51,7 @@ export default function forgotPassword() {
     return (
         <View style={style.contaier}>
             <View style={style.buttonLoginContainer}>
-                <TouchableOpacity style={style.backToLogin} onPress={handleEmailSignIn} >
+                <TouchableOpacity style={style.backToLogin} onPress={handleEmailSignIn}>{/* */}
                     <View style={style.buttonContent}>
                         <Image
                             source={require('../../../assets/backToLogin.png')}
@@ -60,30 +65,32 @@ export default function forgotPassword() {
             <View style={style.iconContainer}>
                 <Icon name="lock" size={150} color="#333" style={style.lockIcon} />
             </View>
+
             {/*Texto de forgot */}
             <View style={style.containerTextForgot}>
                 <Text style={style.titleTextForgot}>Forgot password?</Text>
                 <Text style={style.subtitleTextPassword}>Enter your email below to reset your password</Text>
             </View>
+
             {/*Insert your email */}
             <View style={style.inputContainerEmail}>
-                <TextInput 
-                style={style.inputText} 
-                placeholder="E-mail" 
-                placeholderTextColor="#555" 
-                value={email}
-                onChangeText={handleEmailChange}
-                keyboardType='email-address'
-                autoCapitalize='none'
+                <TextInput
+                    style={style.inputText}
+                    placeholder="E-mail"
+                    placeholderTextColor="#555"
+                    value={email}
+                    onChangeText={handleEmailChange}
+                    keyboardType='email-address'
+                    autoCapitalize='none'
                 />
             </View>
 
             {/*Botão de submit */}
             <View style={style.buttonContainer}>
-                <TouchableOpacity 
-                style={style.signInButton}
-                disabled={!isEmailValid}
-                onPress={handleSubmit}
+                <TouchableOpacity
+                    style={style.signInButton}
+                    //disabled={!isEmailValid}
+                    onPress={handleSubmit}
                 >
                     <View style={style.buttonContent}>
                         <Text style={style.buttonText}>Submit</Text>
