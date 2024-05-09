@@ -22,8 +22,8 @@ export default function VerificationCode() {
     };
 
     const handleCodeChange = (index, value) => {
-        //verifica se o valor é de um numero em cada caixa
-        if (/^\d$/.test(value)) {
+        //verifica se o valor é de um numero em cada caixa ou se é vazio
+        if (/^\d$/.test(value) || value == '') {
             const newCodes = [...codes];
             newCodes[index] = value;
             setCodes(newCodes);
@@ -63,12 +63,10 @@ export default function VerificationCode() {
                             value={code}
                             keyboardType="numeric"
                             maxLength={1}
-                            returnKeyType={index == codes.length - 1 ? 'done' : 'next'}
-                            onSubmitEditing={() => {
-                                if (index == code.length - 1) {
+                            returnKeyType= "done"/*{index == codes.length - 1 ? 'done' : 'next'}*/
+                           /* onSubmitEditing={() => {
                                     keyboard.dismiss();
-                                }
-                            }}
+                            }}*/
                         />
                     ))}
                 </View>
@@ -81,6 +79,14 @@ export default function VerificationCode() {
                             <Text style={styles.buttonText}>Submit</Text>
                         </View>
                     </TouchableOpacity>
+                </View>
+                {/*Logo final */}
+                <View style={styles.logoFinal}>
+                    <Image
+                        source={require('../../../assets/logo_welcome.png')}
+                        resizeMode='contain'
+                        style={styles.logoImage}
+                    />
                 </View>
             </View>
         </View>
@@ -135,6 +141,8 @@ const styles = StyleSheet.create({
     // Caixas brancas com borda vermelha
     codeContainer: {
         flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 20,
     },
     codeBox: {
@@ -162,9 +170,25 @@ const styles = StyleSheet.create({
         color: Colors.primary,
     },
     //button de submit
-    buttonContainer:{
-        position: 'absolute',
+    buttonContainer: {
         top: 50,
-        marginLeft: '25%',
+    },
+    signInButton: {
+        width: 260,
+        height: 50,
+        backgroundColor: Colors.primary,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 15,
+    },
+    buttonText: {
+        color: ColorsLigth.ligth7,
+        fontSize: 16,
+    },
+    //Logo final
+    logoFinal: {
+        alignItems: 'center',
+        marginTop: '60%',
     },
 });
