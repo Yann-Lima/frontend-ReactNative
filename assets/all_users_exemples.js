@@ -16,98 +16,123 @@ import c_1 from "./carrossel_1.jpg";
 import c_2 from "./carrossel_2.jpg";
 import c_3 from "./carrossel_3.jpg";
 import boy_p from "./boy_profile.jpg";
+import profile_1 from "./profileImage1.png"
+import profile_2 from "./profileImage2.png"
+import profile_3 from "./profileImage3.png"
+import profile_4 from "./profileImage4.png"
+import profile_5 from "./profileImage5.png"
+import profile_6 from "./profileImage6.png"
+import profile_7 from "./profileImage7.png"
+import profile_8 from "./profileImage8.png"
+import profile_9 from "./profileImage9.png"
+import profile_10 from "./profileImage10.png"
+import profile_11 from "./profileImage11.png"
+import profile_12 from "./profileImage12.png"
 /*import man_p from "./man_profile.jpg";
 import man_p2 from "./man_profile2.jpg";
 import woman_p from "./woman_profile.jpg";*/
 
-let all_users_exemples = [
+const all_users_exemples = [
     {
         id: 1,
-        name: "Post publicated",
+        name: "Beatriz C.",
         like: getRandomNumber(1, 1000), // Gera um número aleatório de 1 a 1000 para os likes
         comentarios: getRandomNumber(0, 100), // Gera um número aleatório de 0 a 100 para os comentários
-        image: p1_img,
+        imageProfile: profile_1,
+        imagePost: p1_img,
     },
     {
         id: 2,
-        name: "Post publicated",
+        name: "Ana Claudia",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p2_img,
+        imageProfile: profile_2,
+        imagePost: p2_img,
     },
     {
         id: 3,
-        name: "Post publicated",
+        name: "Billy",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p3_img,
+        imageProfile: profile_3,
+        imagePost: p3_img,
     },
     {
         id: 4,
-        name: "Post publicated",
+        name: "Jonas",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p4_img,
+        imageProfile: profile_4,
+        imagePost: p4_img,
     },
     {
         id: 5,
-        name: "Post publicated",
+        name: "Icaro",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p5_img,
+        imageProfile: profile_5,
+        imagePost: p5_img,
     },
     {
         id: 6,
-        name: "Post publicated",
+        name: "Luna B.",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p6_img,
+        imageProfile: profile_6,
+        imagePost: p6_img,
     },
     {
         id: 7,
-        name: "Post publicated",
+        name: "Thiago Lima",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p7_img,
+        imageProfile: profile_7,
+        imagePost: p7_img,
     },
     {
         id: 8,
-        name: "Post publicated",
+        name: "Livia",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p8_img,
+        imageProfile: profile_8,
+        imagePost: p8_img,
     },
     {
         id: 9,
-        name: "Post publicated",
+        name: "Paulo Moreira",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p9_img,
+        imageProfile: profile_9,
+        imagePost: p9_img,
     },
     {
         id: 10,
-        name: "Post publicated",
+        name: "Luana",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p10_img,
+        imageProfile: profile_10,
+        imagePost: p10_img,
     },
     {
         id: 11,
-        name: "Post publicated",
+        name: "Vivian",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: p11_img,
+        imageProfile: profile_11,
+        imagePost: p11_img,
     },
 
     //Para o carrossel TESTAR POIS NUNCA FIZ ANTES 
     {
         id: 12,
-        name: "Post carrossel",
+        name: "Alexandre",
         like: getRandomNumber(1, 1000),
         comentarios: getRandomNumber(0, 100),
-        image: [c_1, c_2, c_3],
+        imageProfile: profile_12,
+        imagePost: [c_1, c_2, c_3],
     }
 ];
 
 
-export default all_users_exemples;
+//export default all_users_exemples;
+export {all_users_exemples};
