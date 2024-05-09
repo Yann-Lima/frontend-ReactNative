@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import {Colors, Fonts, ColorsLigth, ColorsDark} from '../../../assets/theme.js';
@@ -15,10 +15,36 @@ import {Colors, Fonts, ColorsLigth, ColorsDark} from '../../../assets/theme.js';
 
 export default function SignIn() {
   const navigation = useNavigation();
+  const [email, setEmail] = useState(''); //Para armazenar o email
 
   const handleForgotPassword = ()=>{
     navigation.navigate('ForgotPassword');
   };
+
+  const handleTimeline = (username, profileImage) =>{
+    navigation.navigate('Timeline', {
+      profileImage: getProfileImage(),//passando imagem do perfil 
+      username: email //passando email
+    });
+  };
+
+  //Função para determinar a imagem de perfil com base no email
+  const getProfileImage = () =>{
+    if(email == 'Yann@'){
+      return require('../../../assets/man_profile.jpg')
+    } else if (email == 'Pedro@'){
+      return require('../../../assets/boy_profile.jpg')
+    } else if (email == 'Matheus@'){
+      return require('../../../assets/man_profile2.jpg')
+    } else if (email == 'Lea@'){
+      return require('../../../assets/woman_profile.jpg')
+    } else {
+      //caso nenhum email ainda tenha sido escolhido
+      return  require('../../../assets/man_profile.jpg')
+    }
+  };
+
+  //Começo das View
   return (
     <ImageBackground
       source={require('../../../assets/backgroud_SignIn.png')}
@@ -28,16 +54,18 @@ export default function SignIn() {
       <View style={style.overlay} />
       <View style={[style.profileImageContainer, { marginTop: 120 }]}>
         <Image
-          source={require('../../../assets/man_profile.jpg')}
+          source={getProfileImage()}//fução para obter a imagem de perfil
           style={style.profileImage}
           resizeMode='cover'
         />
       </View>
+
       {/*Caixa branca */}
       <View style={style.container}>
         <View style={style.whiteBox}>
           <View>
             <Text style={style.welcomeText}>Welcome</Text>
+
             {/*Input de Email */}
             <View style={[style.inputContainer]}>
               <View style={style.inputContent}>
@@ -45,8 +73,10 @@ export default function SignIn() {
                   style={style.input}
                   placeholder='E-mail'
                   placeholderTextColor="#29D9D5"
+                  onChangeText={text => setEmail(text)} //atualiza o estado do email
                 />
               </View>
+
               {/*Input de Password */}
               <View style={style.inputContainer}>
                 <View style={style.inputContent}>
@@ -60,21 +90,25 @@ export default function SignIn() {
               </View>
             </View>
             <View style={style.line} />
+
             {/*Botao de Login */}
             <View style={style.buttonContainer}>
-              <TouchableOpacity style={style.signInButton}>
+              <TouchableOpacity style={style.signInButton} onPress={handleTimeline}>
+
                 {/*</View>onPress={handleEmailSignIn}*/}
                 <View style={style.buttonContent}>
                   <Text style={style.buttonText}>Login</Text>
                 </View>
               </TouchableOpacity>
             </View>
+
             {/*Esqueceu a senha */}
             <View style={style.forgotPasswordContainer}>
               <TouchableOpacity onPress={handleForgotPassword}>
                 <Text style={style.forgotPasswordText}>Forgotten <Text style={style.passwordText}>your password?</Text></Text>
               </TouchableOpacity>
             </View>
+
             {/*Logo final */}
             <View style={style.logoFinal}>
               <Image

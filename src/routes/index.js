@@ -5,6 +5,7 @@ import SignIn from '../pages/SignIn';
 import ForgotPassword from '../pages/forgotPassword';
 import CreateAccount from '../pages/CreateAccount';
 import VerificationCode from '../pages/VerificationCode';
+import Timeline from '../pages/Timeline';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,12 @@ export default function Routes() {
             <Stack.Screen
                 name="VerificationCode"
                 component={VerificationCode}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Timeline"
+                component={Timeline}
                 options={{ headerShown: false }}
             />
 
