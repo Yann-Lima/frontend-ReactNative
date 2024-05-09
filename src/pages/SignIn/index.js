@@ -1,23 +1,23 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  TextInput
-} from 'react-native';
 import React, { useState } from 'react';
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  Image, 
+  ImageBackground, 
+  TouchableOpacity, 
+  TextInput, 
+  Button 
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import * as Animatable from 'react-native-animatable';
-import {Colors, Fonts, ColorsLigth, ColorsDark} from '../../../assets/theme.js';
-
+import { Colors, ColorsLigth } from '../../../assets/theme.js';
 
 export default function SignIn() {
   const navigation = useNavigation();
   const [email, setEmail] = useState(''); //Para armazenar o email
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const handleForgotPassword = ()=>{
+  const handleForgotPassword = () => {
     navigation.navigate('ForgotPassword');
   };
 
@@ -28,23 +28,28 @@ export default function SignIn() {
     });
   };
 
+  //Função para deixar a senha visível
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   //Função para determinar a imagem de perfil com base no email
-  const getProfileImage = () =>{
-    if(email == 'Yann@'){
-      return require('../../../assets/man_profile.jpg')
-    } else if (email == 'Pedro@'){
-      return require('../../../assets/boy_profile.jpg')
-    } else if (email == 'Matheus@'){
-      return require('../../../assets/man_profile2.jpg')
-    } else if (email == 'Lea@'){
-      return require('../../../assets/woman_profile.jpg')
-    } else {
-      //caso nenhum email ainda tenha sido escolhido
-      return  require('../../../assets/man_profile.jpg')
+  const getProfileImage = () => {
+      if(email == 'Yann@'){
+        return require('../../../assets/man_profile.jpg')
+      } else if (email == 'Pedro@'){
+        return require('../../../assets/boy_profile.jpg')
+      } else if (email == 'Matheus@'){
+        return require('../../../assets/man_profile2.jpg')
+      } else if (email == 'Lea@'){
+        return require('../../../assets/woman_profile.jpg')
+      } else {
+        //caso nenhum email ainda tenha sido escolhido
+        return  require('../../../assets/man_profile.jpg')
     }
   };
 
-  //Começo das View
+  //Começo das views
   return (
     <ImageBackground
       source={require('../../../assets/backgroud_SignIn.png')}
@@ -63,65 +68,62 @@ export default function SignIn() {
       {/*Caixa branca */}
       <View style={style.container}>
         <View style={style.whiteBox}>
-          <View>
-            <Text style={style.welcomeText}>Welcome</Text>
+          <Text style={style.welcomeText}>Welcome</Text>
 
-            {/*Input de Email */}
-            <View style={[style.inputContainer]}>
-              <View style={style.inputContent}>
-                <TextInput
-                  style={style.input}
-                  placeholder='E-mail'
-                  placeholderTextColor="#29D9D5"
-                  onChangeText={text => setEmail(text)} //atualiza o estado do email
-                />
+      {/*Input de Email */}
+          <View style={style.inputContainer}>
+            <TextInput
+              style={style.input}
+              placeholder='E-mail'
+              placeholderTextColor="#29D9D5"
+              onChangeText={text => setEmail(text)}
+            />
+          </View>
+
+      {/*Input de Password */}
+          <View style={style.inputContainer}>
+            <TextInput
+              style={style.input}
+              placeholder='Password'
+              placeholderTextColor="#29D9D5"
+              secureTextEntry={!passwordVisible}
+            />
+            <Button //botão de visualizar senha
+              title={passwordVisible ? "Hide Password" : "Show Password"}
+              onPress={togglePasswordVisibility}
+            />
+          </View>
+              
+          <View style={style.line} />
+
+      {/*Botao de Login */}
+          <View style={style.buttonContainer}>
+            <TouchableOpacity style={style.signInButton} onPress={handleTimeline}>
+              <View style={style.buttonContent}>
+                <Text style={style.buttonText}>Login</Text>
               </View>
+            </TouchableOpacity>
+          </View>
 
-              {/*Input de Password */}
-              <View style={style.inputContainer}>
-                <View style={style.inputContent}>
-                  <TextInput
-                    style={style.input}
-                    placeholder='Password'
-                    placeholderTextColor="#29D9D5"
-                    secureTextEntry={true} //ocultar senha
-                  />
-                </View>
-              </View>
-            </View>
-            <View style={style.line} />
+      {/*Esqueceu a senha */}
+          <View style={style.forgotPasswordContainer}>
+            <TouchableOpacity onPress={handleForgotPassword}>
+              <Text style={style.forgotPasswordText}>Forgotten <Text style={style.passwordText}>your password?</Text></Text>
+            </TouchableOpacity>
+          </View>
 
-            {/*Botao de Login */}
-            <View style={style.buttonContainer}>
-              <TouchableOpacity style={style.signInButton} onPress={handleTimeline}>
-
-                {/*</View>onPress={handleEmailSignIn}*/}
-                <View style={style.buttonContent}>
-                  <Text style={style.buttonText}>Login</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            {/*Esqueceu a senha */}
-            <View style={style.forgotPasswordContainer}>
-              <TouchableOpacity onPress={handleForgotPassword}>
-                <Text style={style.forgotPasswordText}>Forgotten <Text style={style.passwordText}>your password?</Text></Text>
-              </TouchableOpacity>
-            </View>
-
-            {/*Logo final */}
-            <View style={style.logoFinal}>
-              <Image
-                source={require('../../../assets/logo_welcome.png')}
-                resizeMode='contain'
-                style={style.logoImage}
-              />
-            </View>
+      {/*Logo final */}
+          <View style={style.logoFinal}>
+            <Image
+              source={require('../../../assets/logo_welcome.png')}
+              resizeMode='contain'
+              style={style.logoImage}
+            />
           </View>
         </View>
       </View>
     </ImageBackground>
-  )
+  );
 }
 
 const style = StyleSheet.create({
@@ -226,4 +228,4 @@ const style = StyleSheet.create({
     alignItems: 'center',
     marginTop: '5%',
   }
-})
+});

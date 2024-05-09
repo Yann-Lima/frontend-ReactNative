@@ -39,7 +39,7 @@ export default function forgotPassword() {
     };
 
     const handleSubmit = () => {
-        if (!email.trim() || email.indexOf('@') === -1) {//verifica se o email esta vazio ou sem o @
+        if (!email.trim() || email.indexOf('@') == -1) {//verifica se o email esta vazio ou sem o @
             alert('Por favor, insira um e-mail valido.');
             console.warn('email valido:', email);
         } else {
