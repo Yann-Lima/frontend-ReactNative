@@ -21,6 +21,7 @@ export default function Timeline() {
     const route = useRoute(); // Hook para obter parâmetros da rota
     const { profileImage, username } = route.params; // Extrai o email dos parâmetros da rota
     const [likedPosts, setLikedPosts] = useState([]); // Estado para controlar os posts curtidos pelo usuário
+    const [postLikes, setPostLikes] = useState({}); //Estado para armazenar o numero de likes
 
     // Função para manipular o like em um post
     const handleLike = (postId) => {
@@ -33,11 +34,17 @@ export default function Timeline() {
                 ? prevLikedPosts.filter((id) => id !== postId) // Remove o post da lista de curtidas se já foi curtido
                 : [...prevLikedPosts, postId] // Adiciona o post à lista de curtidas se ainda não foi curtido
         );
+        //atualiza o numero de likes do post
+        setPostLikes((prevPostLikes) => ({
+            ...prevPostLikes,
+            [postId]: isLiked ? prevPostLikes[postId] - 1 : (prevPostLikes[postId] || 0) + 1,
+        }));
     };
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <View style={styles.container}>
+        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+           
                 <View style={styles.headerTimeline}>
                     <Text style={styles.textHelloUser}>Hello, <Text style={styles.textUser}>{username}</Text></Text>
                     <View style={styles.iconsContainer}>
@@ -69,13 +76,15 @@ export default function Timeline() {
 
                                 {/* Like */}
                                 <TouchableOpacity onPress={() => handleLike(post.id)}>
-                                    <Icon
-                                        name={likedPosts.includes(post.id) ? "heart" : "hearto"}
-                                        size={25}
-                                        style={styles.likeStylePost}
-                                    />
+                                    <Text style={styles.likeCount}>
+                                        <Icon
+                                            name={likedPosts.includes(post.id) ? "heart" : "hearto"}
+                                            size={25}
+                                            style={styles.likeStylePost}
+                                        />
+                                        {" "}{postLikes[post.id] || post.like}
+                                    </Text>
                                 </TouchableOpacity>
-                                <Text style={styles.likeCount}>{post.like}</Text>
 
                                 {/*Comment */}
                                 <Text style={styles.commentCount}>
@@ -91,14 +100,41 @@ export default function Timeline() {
                         </View>
                     ))}
                 </View>
-            </View>
         </ScrollView>
+        {/*Footer botão para todas as paginas */}
+        <View style={styles.footerContainer}>
+
+{/*Botao home */}
+<View style={styles.footerIcon}>
+    <Icon style={styles.iconStyle} name='home' size={30} />
+</View>
+
+{/*Botao chat */}
+<View style={styles.footerIcon}>
+    <Icon2 style={styles.iconStyle} name='chatbubble-outline' size={30} />
+</View>
+
+{/*Botao ranking */}
+<View style={styles.footerIcon}>
+    <Icon4 style={styles.iconStyle} name='ranking-star' size={30} />
+</View>
+
+{/*Botao setting */}
+<View style={styles.footerIcon}>
+    <Icon style={styles.iconStyle} name='setting' size={30} />
+</View>
+</View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
+    },
+    scrollContent: {
+        flexGrow: 1,
+        paddingBottom:80, //espaço final para o footer
     },
     headerTimeline: {
         paddingTop: '15%',
@@ -227,5 +263,27 @@ const styles = StyleSheet.create({
     },
     postContainer: {
         marginBottom: 20,
+    },
+
+    //footer botoes de troca de telas
+    footerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        paddingVertical: 30,
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+    },
+    // Estilo para os icones
+    footerIcon: {
+        alignItems: 'center',
+        paddingRight: 30,
+        
+    },
+    iconStyle:{
+        color: Colors.primary,
     },
 });
