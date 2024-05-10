@@ -15,10 +15,25 @@ import { all_users_exemples } from '../../../assets/all_users_exemples.js'; //im
 import Icon from 'react-native-vector-icons/AntDesign.js';
 import Icon2 from 'react-native-vector-icons/Ionicons.js';
 import Icon3 from 'react-native-vector-icons/EvilIcons.js';
+import Icon4 from 'react-native-vector-icons/FontAwesome6.js';
 
 export default function Timeline() {
-    const route = useRoute(); //Hook para obter parametros da rota
-    const { profileImage, username } = route.params; //extrai o email dos parametros da rota
+    const route = useRoute(); // Hook para obter parâmetros da rota
+    const { profileImage, username } = route.params; // Extrai o email dos parâmetros da rota
+    const [likedPosts, setLikedPosts] = useState([]); // Estado para controlar os posts curtidos pelo usuário
+
+    // Função para manipular o like em um post
+    const handleLike = (postId) => {
+        // Verifica se o post já foi curtido
+        const isLiked = likedPosts.includes(postId);
+
+        // Atualiza a lista de posts curtidos
+        setLikedPosts((prevLikedPosts) =>
+            isLiked
+                ? prevLikedPosts.filter((id) => id !== postId) // Remove o post da lista de curtidas se já foi curtido
+                : [...prevLikedPosts, postId] // Adiciona o post à lista de curtidas se ainda não foi curtido
+        );
+    };
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -51,11 +66,27 @@ export default function Timeline() {
                             <View style={styles.divider}></View>
                             <Image source={post.imagePost} style={styles.imagePost} />
                             <View style={styles.likesCommentsContainer}>
-                                <Text style={styles.likeCount}>
-                                    <Icon name="hearto" size={25} style={styles.likeStylePost} />
-                                    {" "}{post.like}
+
+                                {/* Like */}
+                                <TouchableOpacity onPress={() => handleLike(post.id)}>
+                                    <Icon
+                                        name={likedPosts.includes(post.id) ? "heart" : "hearto"}
+                                        size={25}
+                                        style={styles.likeStylePost}
+                                    />
+                                </TouchableOpacity>
+                                <Text style={styles.likeCount}>{post.like}</Text>
+
+                                {/*Comment */}
+                                <Text style={styles.commentCount}>
+                                    <Icon3 name='comment' size={35} style={styles.commentStylePost} />
+                                    {" "}{post.comentarios}
                                 </Text>
-                                <Text>Comments: {post.comentarios}</Text>
+                                <TouchableOpacity>
+
+                                    {/*Group */}
+                                    <Icon4 name='user-group' size={20} style={styles.userGroupStylePost} />
+                                </TouchableOpacity>
                             </View>
                         </View>
                     ))}
@@ -163,11 +194,16 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         alignSelf: 'center',
     },
-    likesCommentsContainer:{
+    //comentarios, likes e convidar grupo
+    likesCommentsContainer: {
+        flexDirection: 'row', //para alinhar os elementos horizontalmente
         marginLeft: 20,
+        alignItems: 'center',
+        marginTop: 5,
     },
     likeCount: {
         fontSize: 18,
+        marginRight: 10, // espaçamento entre os elementos
     },
     contentContainer: {
         flex: 1,
@@ -175,6 +211,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#333',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    likeStylePost: {
+        color: Colors.primary,
+    },
+    commentStylePost: {
+        color: Colors.primary,
+    },
+    commentCount: {
+        fontSize: 18,
+        marginRight: 10,// espaçamento entre os elementos
+    },
+    userGroupStylePost: {
+        color: Colors.primary,
     },
     postContainer: {
         marginBottom: 20,
