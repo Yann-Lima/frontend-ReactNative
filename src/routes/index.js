@@ -6,6 +6,7 @@ import ForgotPassword from '../pages/forgotPassword';
 import CreateAccount from '../pages/CreateAccount';
 import VerificationCode from '../pages/VerificationCode';
 import Timeline from '../pages/Timeline';
+import SettingsPage from '../pages/SettingsPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,12 @@ export default function Routes() {
             <Stack.Screen
                 name="Timeline"
                 component={Timeline}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="SettingsPage"
+                component={SettingsPage}
                 options={{ headerShown: false }}
             />
 

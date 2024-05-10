@@ -22,6 +22,11 @@ export default function Timeline() {
     const { profileImage, username } = route.params; // Extrai o email dos parâmetros da rota
     const [likedPosts, setLikedPosts] = useState([]); // Estado para controlar os posts curtidos pelo usuário
     const [postLikes, setPostLikes] = useState({}); //Estado para armazenar o numero de likes
+    const navigation = useNavigation();
+
+    const handleSettingsPage = () => {
+        navigation.navigate('SettingsPage');
+    };
 
     // Função para manipular o like em um post
     const handleLike = (postId) => {
@@ -43,8 +48,8 @@ export default function Timeline() {
 
     return (
         <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollContent}>
-           
+            <ScrollView contentContainerStyle={styles.scrollContent}>
+
                 <View style={styles.headerTimeline}>
                     <Text style={styles.textHelloUser}>Hello, <Text style={styles.textUser}>{username}</Text></Text>
                     <View style={styles.iconsContainer}>
@@ -100,30 +105,32 @@ export default function Timeline() {
                         </View>
                     ))}
                 </View>
-        </ScrollView>
-        {/*Footer botão para todas as paginas */}
-        <View style={styles.footerContainer}>
+            </ScrollView>
+            {/*Footer botão para todas as paginas */}
+            <View style={styles.footerContainer}>
 
-{/*Botao home */}
-<View style={styles.footerIcon}>
-    <Icon style={styles.iconStyle} name='home' size={30} />
-</View>
+                {/*Botao home */}
+                <View style={styles.footerIcon}>
+                    <Icon style={styles.iconStyle} name='home' size={30} />
+                </View>
 
-{/*Botao chat */}
-<View style={styles.footerIcon}>
-    <Icon2 style={styles.iconStyle} name='chatbubble-outline' size={30} />
-</View>
+                {/*Botao chat */}
+                <View style={styles.footerIcon}>
+                    <Icon2 style={styles.iconStyle} name='chatbubble-outline' size={30} />
+                </View>
 
-{/*Botao ranking */}
-<View style={styles.footerIcon}>
-    <Icon4 style={styles.iconStyle} name='ranking-star' size={30} />
-</View>
+                {/*Botao ranking */}
+                <View style={styles.footerIcon}>
+                    <Icon4 style={styles.iconStyle} name='ranking-star' size={30} />
+                </View>
 
-{/*Botao setting */}
-<View style={styles.footerIcon}>
-    <Icon style={styles.iconStyle} name='setting' size={30} />
-</View>
-</View>
+                {/*Botao setting */}
+                <TouchableOpacity onPress={handleSettingsPage}>
+                    <View style={styles.footerIcon}>
+                        <Icon style={styles.iconStyle} name='setting' size={30} />
+                    </View>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -134,7 +141,7 @@ const styles = StyleSheet.create({
     },
     scrollContent: {
         flexGrow: 1,
-        paddingBottom:80, //espaço final para o footer
+        paddingBottom: 80, //espaço final para o footer
     },
     headerTimeline: {
         paddingTop: '15%',
@@ -281,9 +288,9 @@ const styles = StyleSheet.create({
     footerIcon: {
         alignItems: 'center',
         paddingRight: 30,
-        
+
     },
-    iconStyle:{
+    iconStyle: {
         color: Colors.primary,
     },
 });
