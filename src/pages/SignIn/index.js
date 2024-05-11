@@ -48,6 +48,7 @@ export default function SignIn() {
         return  require('../../../assets/man_profile.jpg')
     }
   };
+  console.warn('esse é o email ' + email);
 
   //Começo das views
   return (

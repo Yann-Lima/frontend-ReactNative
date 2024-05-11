@@ -25,7 +25,7 @@ export default function Timeline() {
     const navigation = useNavigation();
 
     const handleSettingsPage = () => {
-        navigation.navigate('SettingsPage');
+        navigation.navigate('SettingsPage', {username: username, profileImage});//passa o email como parametro para outras paginas
     };
 
     // Função para manipular o like em um post
