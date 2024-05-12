@@ -13,6 +13,8 @@ npm install react-native-animatable
 *icons
 npm install react-native-vector-icons
 
+*button stwich
+npm install @react-native-async-storage/async-storage
 
 
 <<<<<<<<<< VERIFICAR DEPOIS PORQUE GRADIENT NÃO RODA EM APLICAÇÃO IOS >>>>>>>>>>>>>>>>>
